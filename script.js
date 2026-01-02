@@ -1,5 +1,13 @@
 const displayP = document.getElementById("display");
 
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) =>
+  button.addEventListener("click", (e) => {
+    populateDisplay(e.target.textContent);
+  })
+);
+
 let input1;
 let input2;
 let inputOperator;
@@ -44,6 +52,6 @@ console.log(operate("*", 5, 7));
 //user hits +, displayP changes to 7 +
 //user hits 7, displayP changes to 7 + 7
 //user hits =, displayP changes to 7 + 7 = 14
-function populateDisplay() {
-  displayP.innerText = "Test";
+function populateDisplay(text) {
+  displayP.innerText = text;
 }
