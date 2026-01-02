@@ -1,3 +1,5 @@
+const displayP = document.getElementById("display");
+
 let input1;
 let input2;
 let inputOperator;
@@ -37,3 +39,11 @@ console.log(operate("*", 5, 7));
 //store num1, operation function, click num2
 
 //if click add button, then run add function
+
+//user hits 7, displayP changes to 7
+//user hits +, displayP changes to 7 +
+//user hits 7, displayP changes to 7 + 7
+//user hits =, displayP changes to 7 + 7 = 14
+function populateDisplay() {
+  displayP.innerText = "Test";
+}
