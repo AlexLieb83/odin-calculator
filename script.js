@@ -2,11 +2,15 @@ const displayP = document.getElementById("display");
 
 const buttons = document.querySelectorAll("button");
 
+const clearBtn = document.getElementById("clear");
+
 buttons.forEach((button) =>
   button.addEventListener("click", (e) => {
     populateDisplay(e.target.textContent);
   })
 );
+
+clearBtn.addEventListener("click", clearDisplay);
 
 let input1;
 let input2;
@@ -53,5 +57,9 @@ console.log(operate("*", 5, 7));
 //user hits 7, displayP changes to 7 + 7
 //user hits =, displayP changes to 7 + 7 = 14
 function populateDisplay(text) {
-  displayP.innerText = text;
+  displayP.innerText += text;
+}
+
+function clearDisplay() {
+  displayP.innerText = "";
 }
