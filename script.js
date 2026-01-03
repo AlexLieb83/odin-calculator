@@ -3,6 +3,7 @@ const displayP = document.getElementById("display");
 const buttons = document.querySelectorAll("button");
 
 const clearBtn = document.getElementById("clear");
+const equalBtn = document.getElementById("equal");
 
 buttons.forEach((button) =>
   button.addEventListener("click", (e) => {
@@ -11,6 +12,11 @@ buttons.forEach((button) =>
 );
 
 clearBtn.addEventListener("click", clearDisplay);
+
+//need to figure out how to store the variables to access here, inputOperator, input1, input2
+equalBtn.addEventListener("click", () => {
+  operate(inputOperator, input1, input2);
+});
 
 let input1;
 let input2;
@@ -43,8 +49,6 @@ function operate(operator, num1, num2) {
     return divide(num1, num2);
   }
 }
-
-console.log(operate("*", 5, 7));
 
 //click num, click operation, click other number
 
