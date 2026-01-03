@@ -35,9 +35,10 @@ clearBtn.addEventListener("click", clearDisplay);
 equalBtn.addEventListener("click", () => {
   const result = operate(inputOperator, Number(input1), Number(input2));
 
-  //clear display
-  // clearDisplay()
   displayP.innerText = result;
+  input1 = "";
+  input2 = "";
+  inputOperator = "";
 });
 
 function add(a, b) {
