@@ -16,8 +16,25 @@ buttons.forEach((button) =>
     const currTargetVal = e.target.textContent;
 
     if (operators.includes(currTargetVal)) {
-      inputOperator = currTargetVal;
-      console.log(inputOperator);
+      //if there is no input2, then we have our first operator selected
+      if (input2 === "") {
+        inputOperator = currTargetVal;
+        console.log(inputOperator);
+      } else {
+        //this else statement will run if the user already has an input2 and selects another operator
+        //for example 7 + 1 - 3
+        //we want to run operate when user selects "-"
+        //input2 would need to be chosen
+        //input1 would need to be the result
+        const result = operate(inputOperator, Number(input1), Number(input2));
+
+        inputOperator = currTargetVal;
+
+        displayP.innerText = result;
+        input1 = result;
+        input2 = "";
+        // inputOperator = "";
+      }
     } //if there's no inputOperator
     else if (!inputOperator) {
       input1 += currTargetVal;
@@ -75,16 +92,8 @@ function operate(operator, number1, number2) {
   }
 }
 
-//click num, click operation, click other number
+// if second operator is selected, evaluate the inputs -- without needing to hit =
 
-//store num1, operation function, click num2
-
-//if click add button, then run add function
-
-//user hits 7, displayP changes to 7
-//user hits +, displayP changes to 7 +
-//user hits 7, displayP changes to 7 + 7
-//user hits =, displayP changes to 7 + 7 = 14
 function populateDisplay(text) {
   displayP.innerText = text;
 }
