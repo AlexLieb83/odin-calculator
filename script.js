@@ -15,11 +15,18 @@ buttons.forEach((button) =>
     const operators = ["+", "-", "*", "/"];
     const currTargetVal = e.target.textContent;
 
+    if (currTargetVal === "Clear") {
+      displayP.innerText = "";
+      input1 = "";
+      input2 = "";
+      inputOperator = "";
+      return;
+    }
+
     if (operators.includes(currTargetVal)) {
       //if there is no input2, then we have our first operator selected
       if (input2 === "") {
         inputOperator = currTargetVal;
-        console.log(inputOperator);
       } else {
         //this else statement will run if the user already has an input2 and selects another operator
         //for example 7 + 1 - 3
@@ -33,7 +40,6 @@ buttons.forEach((button) =>
         displayP.innerText = result;
         input1 = result;
         input2 = "";
-        // inputOperator = "";
       }
     } //if there's no inputOperator
     else if (!inputOperator) {
@@ -46,16 +52,23 @@ buttons.forEach((button) =>
   })
 );
 
-clearBtn.addEventListener("click", clearDisplay);
-
 //need to figure out how to store the variables to access here, inputOperator, input1, input2
 equalBtn.addEventListener("click", () => {
-  const result = operate(inputOperator, Number(input1), Number(input2));
+  if (inputOperator === "" || input1 === "" || input2 === "") {
+    displayError("You are missing apart of the equation. Clear and Try again");
+  } else {
+    if (input2 === "0") {
+      displayError("Cannot divide by 0. Clear and Try again");
+      return;
+    }
 
-  displayP.innerText = result;
-  input1 = "";
-  input2 = "";
-  inputOperator = "";
+    const result = operate(inputOperator, Number(input1), Number(input2));
+
+    displayP.innerText = result;
+    input1 = "";
+    input2 = "";
+    inputOperator = "";
+  }
 });
 
 function add(a, b) {
@@ -101,3 +114,14 @@ function populateDisplay(text) {
 function clearDisplay() {
   displayP.innerText = "";
 }
+
+function displayError(errorMsg) {
+  const result = errorMsg;
+
+  displayP.innerText = result;
+  input1 = "";
+  input2 = "";
+  inputOperator = "";
+}
+
+clearBtn.addEventListener("click", clearDisplay);
